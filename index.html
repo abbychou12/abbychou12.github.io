@@ -7,70 +7,104 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700&display=swap');
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+        }
         .navy-bg { background-color: #020817; }
         [data-lang="en"] { display: none; }
 
-        /* 主視覺粒子背景 */
-        #particle-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: 0.75; }
-
-        /* 斷句完美修復（紅箭頭問題已解決） */
-        h1, h2, h3, .chinese-headline {
-            word-break: keep-all !important;
-            overflow-wrap: break-word;
+        /* 斷句強制修復（紅箭頭問題徹底解決） */
+        .chinese-headline { 
+            word-break: keep-all !important; 
+            white-space: pre-line; 
+            display: block; 
         }
 
-        .hero-canvas { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle at 20% 30%, rgba(37,99,235,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(29,78,216,0.1) 0%, transparent 50%); }
-        .flow-line { position: absolute; background: linear-gradient(90deg, transparent, rgba(59,130,246,0.45), transparent); height: 2px; width: 100%; filter: blur(1px); animation: moveLine 6s infinite linear; opacity: 0; }
-        @keyframes moveLine { 0% { transform: translateX(-100%) translateY(0) rotate(-15deg); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateX(100%) translateY(100px) rotate(-15deg); opacity: 0; } }
+        /* 粒子背景 */
+        #particle-canvas { 
+            position: absolute; 
+            inset: 0; 
+            z-index: 1; 
+            pointer-events: none; 
+            mix-blend-mode: screen; 
+            opacity: 0.75; 
+        }
+
+        /* 流線特效 */
+        .hero-canvas { 
+            position: absolute; 
+            inset: 0; 
+            z-index: 2; 
+            background: radial-gradient(circle at 20% 30%, rgba(37,99,235,0.15) 0%, transparent 50%), 
+                        radial-gradient(circle at 80% 70%, rgba(29,78,216,0.1) 0%, transparent 50%); 
+        }
+        .flow-line { 
+            position: absolute; 
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.45), transparent); 
+            height: 2px; width: 100%; 
+            filter: blur(1px); 
+            animation: moveLine 6s infinite linear; 
+            opacity: 0; 
+        }
+        @keyframes moveLine { 
+            0% { transform: translateX(-100%) translateY(0) rotate(-15deg); opacity: 0; } 
+            20% { opacity: 1; } 
+            80% { opacity: 1; } 
+            100% { transform: translateX(100%) translateY(100px) rotate(-15deg); opacity: 0; } 
+        }
         .line-1 { top: 20%; animation-delay: 0s; }
         .line-2 { top: 50%; animation-delay: 2s; height: 1px; opacity: 0.25; }
         .line-3 { top: 80%; animation-delay: 4s; height: 3px; }
 
-        .brand-logo-item { filter: grayscale(100%); opacity: 0.5; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .brand-logo-item:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.12); }
+        .brand-logo-item { 
+            filter: grayscale(100%); 
+            opacity: 0.5; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .brand-logo-item:hover { 
+            filter: grayscale(0%); 
+            opacity: 1; 
+            transform: scale(1.12); 
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-<!-- NAV -->
-<nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<!-- NAV（淺灰色 + 放大字體，完全匹配你的截圖） -->
+<nav class="fixed w-full z-50 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <!-- === 優化後新 LOGO（簡潔高端科技感）=== -->
-            <svg width="38" height="38" viewBox="0 0 100 100" class="text-blue-600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 最終優化 LOGO（兩條波浪間距完全一致 + 科技感） -->
+            <svg width="42" height="42" viewBox="0 0 100 100" class="text-blue-600" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="waveGrad" x1="20" y1="30" x2="80" y2="70" gradientUnits="userSpaceOnUse">
+                    <linearGradient id="waveGrad" x1="15" y1="35" x2="85" y2="65" gradientUnits="userSpaceOnUse">
                         <stop offset="0%" stop-color="#2563eb"/>
                         <stop offset="100%" stop-color="#1e40af"/>
                     </linearGradient>
                 </defs>
-                <!-- 隱形晶片邊框 -->
-                <rect x="16" y="16" width="68" height="68" rx="12" stroke="#e2e8f0" stroke-width="3" opacity="0.18"/>
+                <rect x="12" y="12" width="76" height="76" rx="14" stroke="#e2e8f0" stroke-width="4" opacity="0.15"/>
                 <!-- 主波浪 -->
-                <path d="M22 48 Q35 25 50 48 Q65 71 78 48" stroke="url(#waveGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- 副波浪 -->
-                <path d="M22 60 Q35 45 50 60 Q65 75 78 60" stroke="#60a5fa" stroke-width="4" opacity="0.9" stroke-linecap="round"/>
+                <path d="M20 48 Q 35 28 50 48 Q 65 68 80 48" stroke="url(#waveGrad)" stroke-width="7.5" stroke-linecap="round"/>
+                <!-- 副波浪（間距一致） -->
+                <path d="M20 58 Q 35 38 50 58 Q 65 78 80 58" stroke="#60a5fa" stroke-width="4" opacity="0.95" stroke-linecap="round"/>
             </svg>
             <div class="flex flex-col leading-none">
-                <span class="text-2xl font-black tracking-tighter text-blue-900 uppercase">CHIPWAVE GLOBAL</span>
-                <span class="text-[9px] tracking-[0.3em] text-blue-600 font-bold mt-1 uppercase">芯浪國際有限公司</span>
+                <span class="text-3xl font-black tracking-[-0.04em] text-blue-950">CHIPWAVE GLOBAL</span>
+                <span class="text-sm tracking-[0.25em] text-blue-600 font-semibold mt-0.5">芯浪國際有限公司</span>
             </div>
         </div>
-        <div class="flex items-center space-x-6">
-            <div class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-600">
-                <a href="#about" class="hover:text-blue-600 transition"><span data-lang="zh">關於我們</span><span data-lang="en">About</span></a>
-                <a href="#itad" class="hover:text-blue-600 transition"><span data-lang="zh">業務範疇</span><span data-lang="en">Services</span></a>
-                <a href="#contact" class="hover:text-blue-600 transition"><span data-lang="zh">聯繫我們</span><span data-lang="en">Contact</span></a>
-            </div>
-            <button onclick="toggleLang()" class="bg-blue-900 text-white px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest hover:bg-blue-600 transition uppercase">
-                <span id="langText">ENGLISH</span>
-            </button>
+        <div class="flex items-center space-x-8 text-sm font-medium">
+            <a href="#about" class="hover:text-blue-600 transition"><span data-lang="zh">關於我們</span><span data-lang="en">About</span></a>
+            <a href="#itad" class="hover:text-blue-600 transition"><span data-lang="zh">業務範疇</span><span data-lang="en">Services</span></a>
+            <a href="#contact" class="hover:text-blue-600 transition"><span data-lang="zh">聯繫我們</span><span data-lang="en">Contact</span></a>
+            <button onclick="toggleLang()" class="bg-blue-600 text-white px-6 py-2.5 rounded-full text-xs font-black tracking-widest hover:bg-blue-700 transition">ENGLISH</button>
         </div>
     </div>
 </nav>
 
-<!-- HERO（斷句已完全修復） -->
+<!-- HERO（電路板背景 + 斷句完美 + 按鈕放大動態） -->
 <section class="h-screen flex items-center justify-center relative text-white navy-bg overflow-hidden">
     <canvas id="particle-canvas"></canvas>
     <div class="hero-canvas">
@@ -78,34 +112,49 @@
         <div class="flow-line line-2"></div>
         <div class="flow-line line-3"></div>
     </div>
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20"></div>
+    <!-- 電路板背景（完全匹配你第一張截圖） -->
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a0358331f6?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-30"></div>
 
-    <div class="relative z-10 text-center px-4 max-w-5xl fade-in-up">
-        <div class="inline-block px-4 py-1 border border-blue-400 rounded-full text-blue-300 text-[10px] font-black tracking-[0.3em] mb-8 uppercase">Intelligence Sourcing &amp; Sustainable ITAD</div>
+    <div class="relative z-10 text-center px-6 max-w-5xl">
+        <div class="inline-block px-8 py-2 border border-blue-400 rounded-full text-blue-300 text-xs font-black tracking-[0.2em] mb-8">INTELLIGENCE SOURCING &amp; SUSTAINABLE ITAD</div>
         
-        <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-none">
-            <span data-lang="zh">驅動全球數位未來<br><span class="text-blue-500 chinese-headline">專業半導體供應鏈與數據中心資產循環</span></span>
-            <span data-lang="en">Powering the Digital Future<br><span class="text-blue-500">Semiconductor Supply Chain &amp; Data Center Asset Cycle</span></span>
+        <h1 class="text-6xl md:text-7xl font-black tracking-tighter leading-none mb-8">
+            <span data-lang="zh">驅動全球數位未來<br><span class="text-blue-400 chinese-headline">專業半導體供應鏈與數據中心資產循環</span></span>
+            <span data-lang="en">Powering the Digital Future<br><span class="text-blue-400">Semiconductor Supply Chain &amp; Data Center Asset Cycle</span></span>
         </h1>
         
-        <p class="text-lg md:text-xl text-gray-300 mb-12 font-light max-w-3xl mx-auto leading-relaxed">
-            <span data-lang="zh">芯浪國際（CHIPWAVE GLOBAL）總部設於香港，為全球科技領導者提供 1 小時即時報價、100% 正品溯源的電子元器件採購，以及符合 NIST 標準的數據中心 ITAD 回收與循環服務，助您在變動市場中掌握絕對優勢。</span>
-            <span data-lang="en">Headquartered in Hong Kong, Chipwave Global delivers 1-hour quoting, 100% authentic semiconductor sourcing, and NIST-compliant data center ITAD &amp; asset recovery services — giving you a decisive edge in a volatile market.</span>
+        <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-12">
+            <span data-lang="zh">芯浪國際（CHIPWAVE GLOBAL）總部設於香港，為全球科技領導者提供 1 小時即時報價、100% 正品溯源的電子元器件採購，以及符合 NIST 標準的數據中心 ITAD 回收與循環服務。</span>
+            <span data-lang="en">Headquartered in Hong Kong, we deliver 1-hour quoting, 100% authentic sourcing, and NIST-compliant data center ITAD &amp; asset recovery services.</span>
         </p>
         
-        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-12 py-5 rounded-sm font-black transition text-xs tracking-widest uppercase shadow-2xl shadow-blue-500/40">
-            <span data-lang="zh">立即獲取報價</span><span data-lang="en">Get Instant Quote</span>
+        <a href="#contact" 
+           class="inline-block bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all duration-300 px-14 py-6 rounded-2xl font-black text-lg tracking-widest shadow-2xl shadow-blue-500/40">
+            <span data-lang="zh">立即獲取報價</span>
+            <span data-lang="en">Get Instant Quote</span>
         </a>
     </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS（放大數字 + 分隔線，完全匹配第三張截圖） -->
 <section class="py-20 navy-bg text-white border-y border-white/10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
-        <div class="text-center"><span class="block text-4xl font-black text-blue-500 mb-2">2021</span><span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold"><span data-lang="zh">成立年份</span><span data-lang="en">Established</span></span></div>
-        <div class="text-center border-l border-white/10"><span class="block text-4xl font-black text-blue-500 mb-2">&lt;1 小時</span><span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold"><span data-lang="zh">報價響應</span><span data-lang="en">Quote Response</span></span></div>
-        <div class="text-center border-l border-white/10"><span class="block text-4xl font-black text-blue-500 mb-2">50+</span><span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold"><span data-lang="zh">核心合作品牌</span><span data-lang="en">Key Partners</span></span></div>
-        <div class="text-center border-l border-white/10"><span class="block text-4xl font-black text-blue-500 mb-2">100%</span><span class="text-[10px] tracking-widest text-gray-400 uppercase font-bold"><span data-lang="zh">正品溯源保障</span><span data-lang="en">Authentic Only</span></span></div>
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center border-r border-white/20">
+            <span class="block text-5xl font-black text-blue-400">2021</span>
+            <span class="block mt-2 text-sm font-medium tracking-widest text-blue-200"><span data-lang="zh">成立年份</span><span data-lang="en">Established</span></span>
+        </div>
+        <div class="text-center border-r border-white/20">
+            <span class="block text-5xl font-black text-blue-400">&lt;1 小時</span>
+            <span class="block mt-2 text-sm font-medium tracking-widest text-blue-200"><span data-lang="zh">報價響應</span><span data-lang="en">Response Time</span></span>
+        </div>
+        <div class="text-center border-r border-white/20">
+            <span class="block text-5xl font-black text-blue-400">50+</span>
+            <span class="block mt-2 text-sm font-medium tracking-widest text-blue-200"><span data-lang="zh">核心合作品牌</span><span data-lang="en">Key Partners</span></span>
+        </div>
+        <div class="text-center">
+            <span class="block text-5xl font-black text-blue-400">100%</span>
+            <span class="block mt-2 text-sm font-medium tracking-widest text-blue-200"><span data-lang="zh">正品溯源保障</span><span data-lang="en">Authentic Only</span></span>
+        </div>
     </div>
 </section>
 
@@ -113,7 +162,8 @@
 <section id="about" class="py-32 bg-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
         <div class="relative">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" class="rounded-2xl shadow-2xl w-full" alt="芯浪國際團隊" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" 
+                 class="rounded-2xl shadow-2xl w-full" alt="芯浪國際團隊" loading="lazy">
             <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-blue-600 -z-10 rounded-2xl"></div>
         </div>
         <div class="space-y-8">
@@ -123,19 +173,19 @@
                 <span data-lang="en">Building Certainty In A Volatile Market</span>
             </h3>
             <p class="text-gray-600 text-lg leading-relaxed">
-                <span data-lang="zh">芯浪國際有限公司成立於2021年。我們不只是分銷商，更是全球科技企業的策略夥伴。透過敏捷採購 + 循環經濟模式，協助客戶解決晶片短缺、庫存管理與數據中心資產處置的全生命週期挑戰。</span>
-                <span data-lang="en">Founded in 2021, Chipwave Global is more than a distributor — we are your strategic partner. Combining agile sourcing with circular economy principles, we solve the entire hardware lifecycle.</span>
+                <span data-lang="zh">芯浪國際有限公司成立於2021年。我們不只是分銷商，更是全球科技企業的策略夥伴。透過敏捷採購 + 循環經濟模式，協助客戶解決全生命週期挑戰。</span>
+                <span data-lang="en">Founded in 2021, Chipwave Global is more than a distributor — we are your strategic partner.</span>
             </p>
         </div>
     </div>
 </section>
 
-<!-- ITAD（完全按照你截圖重新設計：單一大圖 + 右上標籤卡片） -->
-<section id="itad" class="py-32 bg-gray-50 px-6 border-y border-gray-100">
+<!-- ITAD（完全匹配你第四張截圖：白底 + 右上小卡片，無大圖） -->
+<section id="itad" class="py-32 bg-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-        <div class="space-y-8 order-2 lg:order-1">
+        <div class="space-y-8">
             <h2 class="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs">SUSTAINABILITY &amp; CIRCULARITY</h2>
-            <h3 class="text-4xl font-black text-slate-900 leading-none tracking-tighter uppercase">
+            <h3 class="text-4xl font-black leading-none tracking-tighter">
                 <span data-lang="zh">數據中心專業回收與資產價值最大化方案</span>
                 <span data-lang="en">Data Center ITAD &amp; Asset Recovery</span>
             </h3>
@@ -143,20 +193,14 @@
                 <span data-lang="zh">符合 NIST 800-88 標準的資料銷毀、環保拆解與二次流通服務。幫助全球數據中心實現綠色轉型，同時將閒置設備轉化為可觀收益。</span>
                 <span data-lang="en">NIST 800-88 compliant data sanitization, eco-friendly disassembly, and resale services. Turn idle assets into revenue while achieving true green sustainability.</span>
             </p>
-            <a href="#contact" class="inline-block text-blue-600 font-black border-b-2 border-blue-600 pb-1 hover:text-blue-700 transition text-xs tracking-widest uppercase italic">
-                <span data-lang="zh">立即諮詢 ITAD 方案</span><span data-lang="en">Consult ITAD Services</span>
-            </a>
+            <a href="#contact" class="inline-block text-blue-600 font-black border-b-2 border-blue-600 pb-1 hover:text-blue-700 transition text-sm tracking-widest">立即諮詢 ITAD 方案</a>
         </div>
-        <div class="order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-2xl">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=1200&q=80" 
-                 class="w-full h-full object-cover" alt="數據中心 ITAD 回收" loading="lazy" decoding="async">
-            <!-- 右上標籤卡片（完全符合你截圖） -->
-            <div class="absolute top-8 right-8 bg-white rounded-2xl shadow p-6 max-w-[240px]">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 bg-blue-100 rounded-2xl flex items-center justify-center text-2xl">♻️</div>
-                    <div>
-                        <p class="font-black text-blue-600 tracking-widest text-sm">數據中心回收</p>
-                    </div>
+        <!-- 右上小卡片（完全匹配截圖） -->
+        <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-xl max-w-xs mx-auto lg:mx-0">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl">♻️</div>
+                <div>
+                    <p class="font-black text-emerald-700 text-lg">數據中心 ITAD 回收</p>
                 </div>
             </div>
         </div>
@@ -177,21 +221,22 @@
     </div>
 </section>
 
-<!-- CONTACT + 直接寄信表單 -->
+<!-- CONTACT + 直接寄信表單（地址中英雙語） -->
 <section id="contact" class="py-32 navy-bg text-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
         <div class="space-y-12">
-            <h3 class="text-5xl font-black tracking-tighter uppercase leading-none">
+            <h3 class="text-5xl font-black tracking-tighter leading-none">
                 <span data-lang="zh">啟動合作<br><span class="text-blue-400">聯繫芯浪專業團隊</span></span>
                 <span data-lang="en">Start a Partnership<br><span class="text-blue-400">Contact Our Team</span></span>
             </h3>
             <div class="space-y-8">
                 <div class="border-l-2 border-blue-400 pl-6">
-                    <p class="text-blue-400 font-black uppercase text-[10px] tracking-widest mb-1">香港總部</p>
-                    <p class="text-gray-400 text-sm">香港新蒲崗彩虹道192-198號<br>黃金工業大廈C座13樓11室</p>
+                    <p class="text-blue-400 font-black uppercase text-xs tracking-widest mb-1">香港總部 / Head Office</p>
+                    <p data-lang="zh" class="text-gray-400">香港新蒲崗彩虹道192-198號 黃金工業大廈C座13樓11室</p>
+                    <p data-lang="en" class="text-gray-400">Room 11, 13/F, Block C, Wong King Industrial Building, 192-198 Choi Hung Road, San Po Kong, Hong Kong</p>
                 </div>
                 <div class="border-l-2 border-blue-400 pl-6">
-                    <p class="text-blue-400 font-black uppercase text-[10px] tracking-widest mb-1">商務郵箱</p>
+                    <p class="text-blue-400 font-black uppercase text-xs tracking-widest mb-1">商務郵箱</p>
                     <p class="text-2xl font-bold tracking-tight">info@chipwaveglobal.com</p>
                 </div>
             </div>
@@ -252,37 +297,82 @@
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [], w, h;
-        class Particle { constructor() { this.reset(); } reset() { this.x = Math.random()*w; this.y = Math.random()*h; this.size = Math.random()*2.5+1; this.speedX = Math.random()*0.6-0.3; this.speedY = Math.random()*0.6-0.3; } update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>h)this.speedY*=-1; } draw() { ctx.fillStyle='rgba(59,130,246,0.85)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }}
-        function resize() { const hero = document.querySelector('section:first-of-type'); w=hero.offsetWidth; h=hero.offsetHeight; canvas.width=w; canvas.height=h; }
-        function create() { particles=[]; const count = window.innerWidth<768?55:85; for(let i=0;i<count;i++)particles.push(new Particle()); }
-        function connect() { for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.hypot(dx,dy); if(dist<135){ctx.strokeStyle=`rgba(59,130,246,${1-dist/135})`; ctx.lineWidth=0.8; ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }}}
-        function animate(){ctx.clearRect(0,0,w,h); particles.forEach(p=>{p.update();p.draw();}); connect(); requestAnimationFrame(animate);}
+        class Particle {
+            constructor() { this.reset(); }
+            reset() { this.x = Math.random()*w; this.y = Math.random()*h; this.size = Math.random()*2.5+1; this.speedX = Math.random()*0.6-0.3; this.speedY = Math.random()*0.6-0.3; }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>h)this.speedY*=-1; }
+            draw() { ctx.fillStyle='rgba(59,130,246,0.85)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+        }
+        function resize() { 
+            const hero = document.querySelector('section:first-of-type'); 
+            w = hero.offsetWidth; h = hero.offsetHeight; 
+            canvas.width = w; canvas.height = h; 
+        }
+        function create() { 
+            particles = []; 
+            const count = window.innerWidth < 768 ? 55 : 85; 
+            for(let i=0; i<count; i++) particles.push(new Particle()); 
+        }
+        function connect() {
+            for(let i=0; i<particles.length; i++) {
+                for(let j=i+1; j<particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.hypot(dx, dy);
+                    if(dist < 135) {
+                        ctx.strokeStyle = `rgba(59,130,246,${1 - dist/135})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            connect();
+            requestAnimationFrame(animate);
+        }
         resize(); create(); animate();
-        window.addEventListener('resize',()=>{resize();create();});
+        window.addEventListener('resize', () => { resize(); create(); });
     }
 
-    // 表單直接寄信（FormSubmit）
+    // 表單直接寄信
     async function handleFormSubmit(e) {
         e.preventDefault();
         const form = document.getElementById('contactForm');
         const btn = document.getElementById('submitBtn');
         const original = btn.innerHTML;
-        btn.disabled = true; btn.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> 寄送中...`;
+        btn.disabled = true; 
+        btn.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> 寄送中...`;
         try {
-            const res = await fetch('https://formsubmit.co/info@chipwaveglobal.com', {method:'POST', body: new FormData(form)});
+            const res = await fetch('https://formsubmit.co/info@chipwaveglobal.com', {
+                method: 'POST', 
+                body: new FormData(form)
+            });
             if(res.ok) {
                 document.getElementById('success-modal').classList.remove('hidden');
                 document.getElementById('success-modal').classList.add('flex');
                 form.reset();
-            } else alert('寄送失敗，請稍後再試');
-        } catch(err) { alert('網路問題，請直接寄信至 info@chipwaveglobal.com'); }
-        btn.disabled = false; btn.innerHTML = original;
+            } else {
+                alert('寄送失敗，請稍後再試或直接寄信至 info@chipwaveglobal.com');
+            }
+        } catch(err) {
+            alert('網路問題，請直接寄信至 info@chipwaveglobal.com');
+        }
+        btn.disabled = false; 
+        btn.innerHTML = original;
     }
     function closeModal() {
         const modal = document.getElementById('success-modal');
-        modal.classList.add('hidden'); modal.classList.remove('flex');
+        modal.classList.add('hidden'); 
+        modal.classList.remove('flex');
     }
 
+    // 初始化
     window.onload = () => {
         initParticles();
         document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
