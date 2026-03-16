@@ -15,11 +15,13 @@
         .navy-bg { background-color: #020817; }
         [data-lang="en"] { display: none; }
 
-        /* 斷句強制修復（紅箭頭問題徹底解決） */
-        .chinese-headline { 
+        /* 斷句 + 紅框置中強制 */
+        .hero-box { 
+            max-width: 980px; 
+            margin-left: auto; 
+            margin-right: auto; 
             word-break: keep-all !important; 
             white-space: pre-line; 
-            display: block; 
         }
 
         /* 粒子背景 */
@@ -29,7 +31,7 @@
             z-index: 1; 
             pointer-events: none; 
             mix-blend-mode: screen; 
-            opacity: 0.75; 
+            opacity: 0.85; 
         }
 
         /* 流線特效 */
@@ -72,11 +74,11 @@
 </head>
 <body class="bg-white text-slate-900">
 
-<!-- NAV（淺灰色 + 放大字體，完全匹配你的截圖） -->
-<nav class="fixed w-full z-50 bg-slate-50 border-b border-slate-200">
+<!-- NAV -->
+<nav class="fixed w-full z-50 bg-white border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <!-- 最終優化 LOGO（兩條波浪間距完全一致 + 科技感） -->
+            <!-- 最終 LOGO -->
             <svg width="42" height="42" viewBox="0 0 100 100" class="text-blue-600" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="waveGrad" x1="15" y1="35" x2="85" y2="65" gradientUnits="userSpaceOnUse">
@@ -85,9 +87,7 @@
                     </linearGradient>
                 </defs>
                 <rect x="12" y="12" width="76" height="76" rx="14" stroke="#e2e8f0" stroke-width="4" opacity="0.15"/>
-                <!-- 主波浪 -->
                 <path d="M20 48 Q 35 28 50 48 Q 65 68 80 48" stroke="url(#waveGrad)" stroke-width="7.5" stroke-linecap="round"/>
-                <!-- 副波浪（間距一致） -->
                 <path d="M20 58 Q 35 38 50 58 Q 65 78 80 58" stroke="#60a5fa" stroke-width="4" opacity="0.95" stroke-linecap="round"/>
             </svg>
             <div class="flex flex-col leading-none">
@@ -104,7 +104,7 @@
     </div>
 </nav>
 
-<!-- HERO（電路板背景 + 斷句完美 + 按鈕放大動態） -->
+<!-- HERO（紅色邊框完全置中 + 粒子背景） -->
 <section class="h-screen flex items-center justify-center relative text-white navy-bg overflow-hidden">
     <canvas id="particle-canvas"></canvas>
     <div class="hero-canvas">
@@ -112,31 +112,32 @@
         <div class="flow-line line-2"></div>
         <div class="flow-line line-3"></div>
     </div>
-    <!-- 電路板背景（完全匹配你第一張截圖） -->
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a0358331f6?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-30"></div>
 
-    <div class="relative z-10 text-center px-6 max-w-5xl">
-        <div class="inline-block px-8 py-2 border border-blue-400 rounded-full text-blue-300 text-xs font-black tracking-[0.2em] mb-8">INTELLIGENCE SOURCING &amp; SUSTAINABLE ITAD</div>
-        
-        <h1 class="text-6xl md:text-7xl font-black tracking-tighter leading-none mb-8">
-            <span data-lang="zh">驅動全球數位未來<br><span class="text-blue-400 chinese-headline">專業半導體供應鏈與數據中心資產循環</span></span>
-            <span data-lang="en">Powering the Digital Future<br><span class="text-blue-400">Semiconductor Supply Chain &amp; Data Center Asset Cycle</span></span>
-        </h1>
-        
-        <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-12">
-            <span data-lang="zh">芯浪國際（CHIPWAVE GLOBAL）總部設於香港，為全球科技領導者提供 1 小時即時報價、100% 正品溯源的電子元器件採購，以及符合 NIST 標準的數據中心 ITAD 回收與循環服務。</span>
-            <span data-lang="en">Headquartered in Hong Kong, we deliver 1-hour quoting, 100% authentic sourcing, and NIST-compliant data center ITAD &amp; asset recovery services.</span>
-        </p>
-        
-        <a href="#contact" 
-           class="inline-block bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all duration-300 px-14 py-6 rounded-2xl font-black text-lg tracking-widest shadow-2xl shadow-blue-500/40">
+    <div class="relative z-10 text-center px-6 hero-box">
+        <!-- 紅色邊框框（完全置中） -->
+        <div class="border-4 border-red-500 rounded-3xl p-12 mb-8">
+            <div class="inline-block px-8 py-2 border border-blue-400 rounded-full text-blue-300 text-xs font-black tracking-[0.2em] mb-6">INTELLIGENCE SOURCING &amp; SUSTAINABLE ITAD</div>
+            
+            <h1 class="text-6xl md:text-7xl font-black tracking-tighter leading-none mb-8">
+                <span data-lang="zh">驅動全球數位未來<br><span class="text-blue-400">專業半導體供應鏈與數據中心資產循環</span></span>
+                <span data-lang="en">Powering the Digital Future<br><span class="text-blue-400">Semiconductor Supply Chain &amp; Data Center Asset Cycle</span></span>
+            </h1>
+            
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                <span data-lang="zh">芯浪國際（CHIPWAVE GLOBAL）總部設於香港，為全球科技領導者提供 1 小時即時報價、100% 正品溯源的電子元器件採購，以及符合 NIST 標準的數據中心 ITAD 回收與循環服務。</span>
+                <span data-lang="en">Headquartered in Hong Kong, we deliver 1-hour quoting, 100% authentic sourcing, and NIST-compliant data center ITAD &amp; asset recovery services.</span>
+            </p>
+        </div>
+
+        <!-- 藍色按鈕 -->
+        <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all duration-300 px-14 py-6 rounded-2xl font-black text-lg tracking-widest shadow-2xl shadow-blue-500/40">
             <span data-lang="zh">立即獲取報價</span>
             <span data-lang="en">Get Instant Quote</span>
         </a>
     </div>
 </section>
 
-<!-- STATS（放大數字 + 分隔線，完全匹配第三張截圖） -->
+<!-- STATS -->
 <section class="py-20 navy-bg text-white border-y border-white/10">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div class="text-center border-r border-white/20">
@@ -162,8 +163,7 @@
 <section id="about" class="py-32 bg-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
         <div class="relative">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" 
-                 class="rounded-2xl shadow-2xl w-full" alt="芯浪國際團隊" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" class="rounded-2xl shadow-2xl w-full" alt="芯浪國際團隊" loading="lazy">
             <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-blue-600 -z-10 rounded-2xl"></div>
         </div>
         <div class="space-y-8">
@@ -180,7 +180,7 @@
     </div>
 </section>
 
-<!-- ITAD（完全匹配你第四張截圖：白底 + 右上小卡片，無大圖） -->
+<!-- ITAD -->
 <section id="itad" class="py-32 bg-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
         <div class="space-y-8">
@@ -195,7 +195,6 @@
             </p>
             <a href="#contact" class="inline-block text-blue-600 font-black border-b-2 border-blue-600 pb-1 hover:text-blue-700 transition text-sm tracking-widest">立即諮詢 ITAD 方案</a>
         </div>
-        <!-- 右上小卡片（完全匹配截圖） -->
         <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-xl max-w-xs mx-auto lg:mx-0">
             <div class="flex items-center gap-4">
                 <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl">♻️</div>
@@ -221,7 +220,7 @@
     </div>
 </section>
 
-<!-- CONTACT + 直接寄信表單（地址中英雙語） -->
+<!-- CONTACT + 直接寄信表單 -->
 <section id="contact" class="py-32 navy-bg text-white px-6">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
         <div class="space-y-12">
@@ -289,19 +288,20 @@
         document.querySelectorAll('[data-lang]').forEach(el => {
             el.style.display = el.getAttribute('data-lang') === currentLang ? 'inline-block' : 'none';
         });
-        document.getElementById('langText').innerText = currentLang === 'zh' ? 'ENGLISH' : '繁體中文';
+        document.getElementById('langText') ? document.getElementById('langText').innerText = currentLang === 'zh' ? 'ENGLISH' : '繁體中文' : null;
     }
 
     // 粒子背景
     function initParticles() {
         const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let particles = [], w, h;
         class Particle {
             constructor() { this.reset(); }
-            reset() { this.x = Math.random()*w; this.y = Math.random()*h; this.size = Math.random()*2.5+1; this.speedX = Math.random()*0.6-0.3; this.speedY = Math.random()*0.6-0.3; }
-            update() { this.x += this.speedX; this.y += this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>h)this.speedY*=-1; }
-            draw() { ctx.fillStyle='rgba(59,130,246,0.85)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+            reset() { this.x = Math.random() * w; this.y = Math.random() * h; this.size = Math.random() * 2.5 + 1; this.speedX = Math.random() * 0.6 - 0.3; this.speedY = Math.random() * 0.6 - 0.3; }
+            update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > w) this.speedX *= -1; if (this.y < 0 || this.y > h) this.speedY *= -1; }
+            draw() { ctx.fillStyle = 'rgba(59,130,246,0.85)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
         function resize() { 
             const hero = document.querySelector('section:first-of-type'); 
@@ -311,16 +311,16 @@
         function create() { 
             particles = []; 
             const count = window.innerWidth < 768 ? 55 : 85; 
-            for(let i=0; i<count; i++) particles.push(new Particle()); 
+            for (let i = 0; i < count; i++) particles.push(new Particle()); 
         }
         function connect() {
-            for(let i=0; i<particles.length; i++) {
-                for(let j=i+1; j<particles.length; j++) {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.hypot(dx, dy);
-                    if(dist < 135) {
-                        ctx.strokeStyle = `rgba(59,130,246,${1 - dist/135})`;
+                    if (dist < 135) {
+                        ctx.strokeStyle = `rgba(59,130,246,${1 - dist / 135})`;
                         ctx.lineWidth = 0.8;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
@@ -346,36 +346,37 @@
         const form = document.getElementById('contactForm');
         const btn = document.getElementById('submitBtn');
         const original = btn.innerHTML;
-        btn.disabled = true; 
+        btn.disabled = true;
         btn.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> 寄送中...`;
         try {
             const res = await fetch('https://formsubmit.co/info@chipwaveglobal.com', {
-                method: 'POST', 
+                method: 'POST',
                 body: new FormData(form)
             });
-            if(res.ok) {
+            if (res.ok) {
                 document.getElementById('success-modal').classList.remove('hidden');
                 document.getElementById('success-modal').classList.add('flex');
                 form.reset();
             } else {
                 alert('寄送失敗，請稍後再試或直接寄信至 info@chipwaveglobal.com');
             }
-        } catch(err) {
+        } catch (err) {
             alert('網路問題，請直接寄信至 info@chipwaveglobal.com');
         }
-        btn.disabled = false; 
+        btn.disabled = false;
         btn.innerHTML = original;
     }
     function closeModal() {
         const modal = document.getElementById('success-modal');
-        modal.classList.add('hidden'); 
+        modal.classList.add('hidden');
         modal.classList.remove('flex');
     }
 
     // 初始化
     window.onload = () => {
         initParticles();
-        document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
+        const form = document.getElementById('contactForm');
+        if (form) form.addEventListener('submit', handleFormSubmit);
         document.querySelectorAll('[data-lang]').forEach(el => {
             el.style.display = el.getAttribute('data-lang') === 'zh' ? 'inline-block' : 'none';
         });
