@@ -80,4 +80,72 @@
                 <span data-lang="en">Empowering Tech<br><span class="text-blue-500">Global Supply Chain</span></span>
             </h1>
             <p class="text-lg md:text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
-                <span data-lang="zh">立足香港，服務全球。芯浪國際為您提供高效、透明、值得信賴的電子元器件採購與數據中心
+                <span data-lang="zh">立足香港，服務全球。芯浪國際為您提供高效、透明、值得信賴的電子元器件採購與數據中心 ITAD 服務。</span>
+                <span data-lang="en">Based in HK, serving the globe. Chipwave provides trusted sourcing and Data Center ITAD services with agile response.</span>
+            </p>
+            <div class="flex justify-center mt-10">
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-12 py-5 rounded-sm font-black transition text-sm tracking-widest uppercase shadow-2xl shadow-blue-500/40">
+                    <span data-lang="zh">即時獲取報價</span><span data-lang="en">Get A Quote</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="brands" class="py-20 bg-white px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-slate-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-12">Global Distribution Line Card</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 items-center">
+                <div class="brand-logo-item font-black text-2xl text-blue-900">INTEL</div>
+                <div class="brand-logo-item font-black text-2xl text-orange-600">AMD</div>
+                <div class="brand-logo-item font-black text-2xl text-green-600">NVIDIA</div>
+                <div class="brand-logo-item font-black text-2xl text-blue-700">SAMSUNG</div>
+                <div class="brand-logo-item font-black text-2xl text-red-600">MICRON</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="itad" class="py-32 bg-gray-50 px-6 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8">
+                <h3 class="text-4xl font-black text-slate-900 leading-tight tracking-tighter uppercase">
+                    <span data-lang="zh">數據中心資產處置<br>(ITAD) 專家</span>
+                    <span data-lang="en">Data Center ITAD<br>Specialist</span>
+                </h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    <span data-lang="zh">我們提供資產回收、數據銷毀與環保再生方案，協助全球數據中心最大化資產殘值，同時確保 100% 數據安全。</span>
+                    <span data-lang="en">We provide recovery, data destruction, and recycling solutions to maximize asset value while ensuring 100% data security.</span>
+                </p>
+            </div>
+            <div class="relative group overflow-hidden rounded-sm">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=60" loading="lazy" class="transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 border-8 border-white/20 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 navy-bg text-white px-6">
+        <div class="max-w-4xl mx-auto text-center space-y-12">
+            <h3 class="text-5xl font-black tracking-tighter uppercase"><span data-lang="zh">啟動合作</span><span data-lang="en">Let's Connect</span></h3>
+            <div class="space-y-4">
+                <p class="text-blue-500 font-bold text-2xl tracking-tight transition hover:text-white cursor-pointer">info@chipwaveglobal.com</p>
+                <p class="text-gray-500 text-xs uppercase tracking-[0.4em]">San Po Kong, Hong Kong</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-black text-center text-[9px] text-gray-800 tracking-widest uppercase">
+        <p>© 2026 CHIPWAVE GLOBAL LIMITED.</p>
+    </footer>
+
+    <script>
+        let currentLang = 'zh';
+        function toggleLang() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = el.getAttribute('data-lang') === currentLang ? 'inline-block' : 'none';
+            });
+            document.getElementById('langText').innerText = currentLang === 'zh' ? 'English' : '繁體中文';
+        }
+    </script>
+</body>
+</html>
