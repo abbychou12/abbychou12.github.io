@@ -1,179 +1,223 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-HK">
+<html lang="zh-Hant-HK" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHIPWAVE GLOBAL | 芯浪國際</title>
-    <link rel="preconnect" href="https://images.unsplash.com">
+    <title>芯浪國際 | CHIPWAVE GLOBAL</title>
+    <meta name="description" content="芯浪國際 - 全球半導體供應鏈優化與 ITAD 專業夥伴。敏捷採購、數據銷毀、循環經濟解決方案。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0a1428',
+                        'deep-navy': '#051224',
+                        'accent': '#3b82f6',
+                        'accent-dark': '#1d4ed8',
+                        'metal': '#c0c0c0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+TC:wght@700&display=swap');
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
-        .navy-bg { background-color: #051224; }
-        
-        /* 核心科技感背景：深藍色底與動態光暈 */
-        .hero-section { background: #020617; position: relative; overflow: hidden; }
-        
-        /* 仿 Rebound 大氣流動光波 */
-        .glow-wave {
-            position: absolute;
-            width: 150%;
-            height: 400px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), rgba(147, 197, 253, 0.6), rgba(59, 130, 246, 0.4), transparent);
-            filter: blur(100px);
-            transform: rotate(-15deg);
-            animation: flowMove 8s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 1;
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(to bottom, #0a1428, #000000);
         }
-        .wave-2 { animation-delay: -4s; height: 200px; opacity: 0.5; top: 30%; }
-
-        @keyframes flowMove {
-            0% { transform: translate(-30%, -20%) rotate(-15deg); }
-            50% { transform: translate(10%, 10%) rotate(-12deg); }
-            100% { transform: translate(-30%, -20%) rotate(-15deg); }
+        .glow-subtle {
+            background: radial-gradient(circle at 30% 70%, rgba(59,130,246,0.15) 0%, transparent 50%);
+            animation: pulse 12s infinite ease-in-out;
         }
-
-        .hero-overlay { 
-            background: radial-gradient(circle at center, rgba(5, 18, 36, 0.4) 0%, rgba(5, 18, 36, 0.9) 100%); 
-            z-index: 2;
+        @keyframes pulse {
+            0%,100% { opacity: 0.6; transform: scale(1); }
+            50%     { opacity: 0.9; transform: scale(1.05); }
         }
-        
-        [data-lang="en"] { display: none; }
-        
-        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; position: relative; z-index: 10; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .brand-logo-item { 
-            filter: grayscale(100%); 
-            opacity: 0.5; 
-            transition: 0.3s; 
-            font-style: normal !important; 
-            letter-spacing: 0.05em;
-        }
-        .brand-logo-item:hover { filter: grayscale(0%); opacity: 1; }
-
-        /* LOGO 波浪動畫 */
-        .logo-anim { stroke-dasharray: 100; animation: dash 3s infinite linear; }
-        @keyframes dash { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .lang-zh [data-lang="en"],
+        .lang-en [data-lang="zh"] { display: none; }
     </style>
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-black text-white lang-zh antialiased">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <svg width="35" height="35" viewBox="0 0 100 100" class="text-blue-600">
-                    <path d="M20 50 Q 50 10, 80 50 T 80 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" class="logo-anim"/>
-                    <path d="M20 65 Q 50 35, 80 65" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-navy/90 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-4">
+                <svg width="42" height="42" viewBox="0 0 100 100" class="text-accent">
+                    <path d="M25 50 Q50 20, 75 50 T75 50" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M30 65 Q50 45, 70 65" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
                 </svg>
-                <div class="flex flex-col">
-                    <span class="text-xl font-extrabold tracking-tighter text-blue-900 leading-none">CHIPWAVE GLOBAL</span>
-                    <span class="text-[9px] tracking-[0.2em] text-gray-400 font-bold mt-1 uppercase">芯浪國際有限公司</span>
+                <div>
+                    <div class="text-2xl font-black tracking-tight">CHIPWAVE GLOBAL</div>
+                    <div class="text-xs tracking-widest text-gray-400 font-semibold">芯浪國際有限公司</div>
                 </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#about" class="text-sm font-medium hover:text-accent transition">關於我們 / About</a>
+                <a href="#services" class="text-sm font-medium hover:text-accent transition">服務 / Services</a>
+                <a href="#partners" class="text-sm font-medium hover:text-accent transition">合作夥伴 / Partners</a>
+                <a href="#contact" class="text-sm font-medium hover:text-accent transition">聯繫我們 / Contact</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleLang()" class="border border-blue-900 px-3 py-1 rounded-full text-[10px] font-black hover:bg-blue-900 hover:text-white transition">
-                    <span id="langText">ENGLISH</span>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLang()" class="px-4 py-2 text-xs font-bold tracking-wider border border-accent/50 rounded-full hover:bg-accent/10 transition">
+                    <span data-lang="zh">ENGLISH</span>
+                    <span data-lang="en">繁體中文</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="hero-section h-screen flex items-center justify-center relative text-white">
-        <div class="glow-wave"></div>
-        <div class="glow-wave wave-2"></div>
+    <!-- Hero -->
+    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 glow-subtle pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10"></div>
 
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40" 
-             style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=70');">
-            <div class="absolute inset-0 hero-overlay"></div>
-        </div>
-        <div class="relative z-10 text-center px-4 max-w-5xl fade-in-up">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-none">
-                <span data-lang="zh">賦能全球運算力<br><span class="text-blue-500">優化半導體供應鏈</span></span>
-                <span data-lang="en">Powering Tech<br><span class="text-blue-500">Global Chip Supply</span></span>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-none mb-8 fade-in">
+                <span data-lang="zh">芯浪國際</span>
+                <span data-lang="en">Chipwave Global</span><br>
+                <span class="text-accent block mt-4">全球半導體價值鏈的可靠橋樑</span>
             </h1>
-            <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
-                <a href="#contact" class="bg-blue-600 px-10 py-4 rounded font-black text-xs tracking-widest uppercase shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition">
-                    <span data-lang="zh">獲取即時報價</span><span data-lang="en">Quick Quote</span>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 fade-in" style="transition-delay: 0.2s;">
+                <span data-lang="zh">敏捷採購 × 專業 ITAD × 循環經濟<br>助力企業最大化資產價值，確保數據安全與合規。</span>
+                <span data-lang="en">Agile sourcing × Professional ITAD × Circular economy<br>Maximizing asset value with data security & compliance.</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6 fade-in" style="transition-delay: 0.4s;">
+                <a href="#services" class="bg-accent text-white px-10 py-5 rounded-lg font-bold tracking-wider uppercase shadow-xl shadow-accent/20 hover:bg-accent-dark transition text-sm">
+                    <span data-lang="zh">探索我們的解決方案</span>
+                    <span data-lang="en">Explore Solutions</span>
+                </a>
+                <a href="#contact" class="border border-gray-500 hover:border-accent text-gray-300 px-10 py-5 rounded-lg font-bold tracking-wider uppercase transition text-sm">
+                    <span data-lang="zh">安排專業諮詢</span>
+                    <span data-lang="en">Request Consultation</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="brands" class="py-20 bg-gray-50 px-6 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-slate-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-12">Core Global Partnerships</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 items-center">
-                <div class="brand-logo-item font-black text-2xl text-blue-900">INTEL</div>
-                <div class="brand-logo-item font-black text-2xl text-orange-600">AMD</div>
-                <div class="brand-logo-item font-black text-2xl text-green-600">NVIDIA</div>
-                <div class="brand-logo-item font-black text-2xl text-blue-700">SAMSUNG</div>
-                <div class="brand-logo-item font-black text-2xl text-red-600">MICRON</div>
+    <!-- Partners -->
+    <section id="partners" class="py-24 bg-deep-navy">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-16 fade-in">
+                <span data-lang="zh">核心全球合作夥伴</span>
+                <span data-lang="en">Strategic Global Partners</span>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 items-center opacity-80">
+                <!-- 建議替換成真 logo img，保持 grayscale → hover color -->
+                <div class="brand-grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+                    <div class="text-4xl font-black text-blue-600">INTEL</div>
+                </div>
+                <div class="brand-grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+                    <div class="text-4xl font-black text-orange-600">AMD</div>
+                </div>
+                <div class="brand-grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+                    <div class="text-4xl font-black text-green-500">NVIDIA</div>
+                </div>
+                <div class="brand-grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+                    <div class="text-4xl font-black text-blue-700">SAMSUNG</div>
+                </div>
+                <div class="brand-grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100">
+                    <div class="text-4xl font-black text-red-600">MICRON</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=60" 
-                  loading="lazy" alt="Office" class="rounded shadow-xl">
-            <div class="space-y-6">
-                <h3 class="text-3xl font-black text-slate-900 leading-tight">
-                    <span data-lang="zh">在多變的市場中<br>建立確定的連接</span>
-                    <span data-lang="en">Building Certainty<br>In A Shifting Market</span>
+    <!-- About -->
+    <section id="about" class="py-24 bg-black">
+        <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <h3 class="text-4xl md:text-5xl font-black leading-tight mb-8">
+                    <span data-lang="zh">在不確定中<br>建立確定性</span>
+                    <span data-lang="en">Creating Certainty<br>In Uncertain Markets</span>
                 </h3>
-                <p class="text-gray-600 leading-relaxed text-sm">
-                    <span data-lang="zh">芯浪國際 (CHIPWAVE GLOBAL) 於 2021 年在香港成立。我們將「敏捷採購」與「循環經濟」相結合，協助全球企業解決資產處置核心難題。</span>
-                    <span data-lang="en">Founded in 2021, Chipwave Global combines sourcing with ITAD to solve core asset disposition challenges.</span>
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    <span data-lang="zh">芯浪國際成立於 2021 年香港。我們專注將敏捷採購與 IT 資產處置（ITAD）結合，為全球企業提供高效、合規、永續的半導體與數據中心設備解決方案。</span>
+                    <span data-lang="en">Founded in Hong Kong in 2021, Chipwave Global integrates agile sourcing and ITAD to deliver efficient, compliant, and sustainable solutions for semiconductor and data center assets worldwide.</span>
                 </p>
             </div>
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
+                 alt="先進半導體環境" loading="lazy" class="rounded-2xl shadow-2xl fade-in" style="transition-delay: 0.3s;">
         </div>
     </section>
 
-    <section id="itad" class="py-24 bg-gray-50 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2 space-y-6">
-                <h3 class="text-3xl font-black text-slate-900 leading-tight">
-                    <span data-lang="zh">數據中心設備<br>專業回收方案</span>
-                    <span data-lang="en">Data Center ITAD<br>Lifecycle Services</span>
+    <!-- Services / ITAD -->
+    <section id="services" class="py-24 bg-gradient-to-b from-black to-deep-navy">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-4xl md:text-5xl font-black">
+                    <span data-lang="zh">專業 ITAD 與供應鏈服務</span>
+                    <span data-lang="en">Professional ITAD & Supply Chain Services</span>
                 </h3>
-                <p class="text-gray-600 text-sm leading-relaxed">
-                    <span data-lang="zh">符合 NIST 標準的數據銷毀與環保回收服務，助力資產價值最大化。</span>
-                    <span data-lang="en">NIST-compliant data sanitization and asset resale to maximize value.</span>
-                </p>
             </div>
-            <div class="lg:w-1/2">
-                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&w=800&q=60" 
-                      loading="lazy" class="rounded shadow-lg">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <img src="https://images.unsplash.com/photo-1558494949-ef0a8c92e0c2?auto=format&fit=crop&w=1200&q=80" 
+                     alt="數據中心設備" loading="lazy" class="rounded-2xl shadow-2xl fade-in">
+                <div class="space-y-8 fade-in" style="transition-delay: 0.2s;">
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        <span data-lang="zh">NIST 標準數據銷毀、環保回收、資產轉售與價值最大化。我們確保每一步合規、可追蹤，並支持企業 ESG 目標。</span>
+                        <span data-lang="en">NIST-compliant data sanitization, eco-friendly recycling, asset resale, and value recovery. Fully compliant, traceable, and aligned with your ESG objectives.</span>
+                    </p>
+                    <a href="#contact" class="inline-block bg-accent/10 border border-accent/30 text-accent px-8 py-4 rounded-lg font-bold hover:bg-accent/20 transition">
+                        <span data-lang="zh">了解完整服務 →</span>
+                        <span data-lang="en">Learn More →</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 navy-bg text-white px-6">
-        <div class="max-w-4xl mx-auto text-center space-y-8">
-            <h3 class="text-4xl font-black tracking-tighter"><span data-lang="zh">與芯浪聯繫</span><span data-lang="en">Contact Us</span></h3>
-            <p class="text-gray-200 text-lg font-bold">info@chipwaveglobal.com</p>
-            <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">San Po Kong, Hong Kong</p>
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-navy">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h3 class="text-5xl font-black mb-10 fade-in">
+                <span data-lang="zh">開始合作</span>
+                <span data-lang="en">Get In Touch</span>
+            </h3>
+            <p class="text-2xl text-gray-300 mb-8">
+                <span data-lang="zh">info@chipwaveglobal.com</span>
+                <span data-lang="en">info@chipwaveglobal.com</span>
+            </p>
+            <p class="text-sm text-gray-500 tracking-widest uppercase">
+                San Po Kong, Hong Kong
+            </p>
         </div>
     </section>
 
-    <footer class="py-10 bg-black text-center text-[9px] text-gray-700 tracking-widest uppercase border-t border-white/5">
-        <p>© 2026 CHIPWAVE GLOBAL LIMITED.</p>
+    <footer class="py-12 bg-black border-t border-white/5 text-center text-sm text-gray-600">
+        <p>© 2026 CHIPWAVE GLOBAL LIMITED. All rights reserved.</p>
     </footer>
 
     <script>
-        let currentLang = 'zh';
         function toggleLang() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.style.display = el.getAttribute('data-lang') === currentLang ? 'inline-block' : 'none';
-            });
-            document.getElementById('langText').innerText = currentLang === 'zh' ? 'ENGLISH' : '繁體中文';
+            document.body.classList.toggle('lang-zh');
+            document.body.classList.toggle('lang-en');
+            const btn = document.querySelector('button[onclick="toggleLang()"] span');
+            btn.textContent = document.body.classList.contains('lang-zh') ? 'ENGLISH' : '繁體中文';
         }
+
+        // Simple scroll fade-in
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
