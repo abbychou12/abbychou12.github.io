@@ -3,216 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHIPWAVE GLOBAL | 芯浪國際 - 全球領先半導體分銷與數據中心服務商</title>
+    <title>CHIPWAVE GLOBAL | 芯浪國際</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+TC:wght@400;700&display=swap');
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
-        .navy-bg { background-color: #051224; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+TC:wght@700&display=swap');
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        .navy-bg { background-color: #020817; }
         
-        /* 融合上一版的高衝擊力漸層 */
-        .hero-overlay { 
-            background: linear-gradient(rgba(5, 18, 36, 0.7), rgba(5, 18, 36, 0.9)); 
+        /* === LOGO 動效與樣式 === */
+        .logo-wave { stroke-dasharray: 100; animation: dash 3s infinite linear; }
+        @keyframes dash { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+
+        /* === 仿 Rebound 藍色流動線條特效 === */
+        .flow-line {
+            position: absolute;
+            width: 200%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            opacity: 0.3;
+            transform: rotate(-15deg);
+            animation: flow 4s infinite linear;
         }
-        
+        @keyframes flow {
+            0% { left: -100%; top: 20%; }
+            100% { left: 100%; top: 80%; }
+        }
+        .flow-line:nth-child(2) { animation-delay: 1.5s; top: 40%; opacity: 0.2; }
+        .flow-line:nth-child(3) { animation-delay: 3s; top: 10%; opacity: 0.1; }
+
+        .hero-overlay { background: radial-gradient(circle at center, rgba(2, 8, 23, 0.6) 0%, rgba(2, 8, 23, 0.95) 100%); }
         [data-lang="en"] { display: none; }
         
-        /* 品牌 Logo 動畫 */
-        .brand-logo { filter: grayscale(100%); opacity: 0.6; transition: all 0.4s ease; }
-        .brand-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* 吸睛按鈕動畫 */
-        .pulse-btn {
-            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
+        .brand-logo-item { filter: grayscale(100%); opacity: 0.5; transition: all 0.4s ease; font-style: normal !important; letter-spacing: 0.05em; }
+        .brand-logo-item:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
     </style>
 </head>
-<body class="bg-white text-slate-900 leading-relaxed">
+<body class="bg-white text-slate-900 overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex flex-col">
-                <span class="text-2xl font-extrabold tracking-tighter text-blue-900 leading-none">CHIPWAVE GLOBAL</span>
-                <span class="text-[10px] tracking-[0.2em] text-gray-400 font-bold mt-1 uppercase">芯浪國際有限公司</span>
-            </div>
-            
-            <div class="flex items-center space-x-6">
-                <div class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-600">
-                    <a href="#about" class="hover:text-blue-600 transition"><span data-lang="zh">關於芯浪</span><span data-lang="en">About</span></a>
-                    <a href="#services" class="hover:text-blue-600 transition"><span data-lang="zh">核心業務</span><span data-lang="en">Services</span></a>
-                    <a href="#itad" class="hover:text-blue-600 transition"><span data-lang="zh">設備回收</span><span data-lang="en">ITAD</span></a>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="text-blue-600">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                    <path d="M30 50 Q 50 20, 70 50 T 70 50" fill="none" stroke="currentColor" stroke-width="6" class="logo-wave"/>
+                    <path d="M25 60 Q 50 35, 75 60" fill="none" stroke="currentColor" stroke-width="4" opacity="0.5"/>
+                </svg>
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-tighter text-blue-900 leading-none uppercase">Chipwave Global</span>
+                    <span class="text-[9px] tracking-[0.3em] text-blue-500 font-bold mt-1 uppercase">芯浪國際有限公司</span>
                 </div>
-                <button onclick="toggleLang()" class="border-2 border-blue-900 px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest hover:bg-blue-900 hover:text-white transition uppercase">
-                    <span id="langText">ENGLISH</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleLang()" class="bg-blue-900 text-white px-4 py-1.5 rounded-full text-[10px] font-black hover:bg-blue-600 transition uppercase tracking-widest">
+                    <span id="langText">English</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="h-[95vh] flex items-center justify-center relative text-white">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80');">
-            <div class="absolute inset-0 hero-overlay"></div>
+    <section class="h-screen flex items-center justify-center relative text-white navy-bg overflow-hidden">
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+        
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40" 
+             style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70');">
         </div>
-        <div class="relative z-10 text-center px-4 max-w-5xl">
-            <div class="inline-block px-4 py-1 border border-blue-400 rounded-full text-blue-400 text-[10px] font-black tracking-widest mb-6 uppercase">Since 2021 | Hong Kong Hub</div>
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl fade-in-up">
             <h1 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-none">
                 <span data-lang="zh">賦能全球運算力<br><span class="text-blue-500">優化半導體供應鏈</span></span>
-                <span data-lang="en">Powering Tech<br><span class="text-blue-500">Global Chip Supply</span></span>
+                <span data-lang="en">Empowering Tech<br><span class="text-blue-500">Global Supply Chain</span></span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-12 font-light max-w-2xl mx-auto">
-                <span data-lang="zh">芯浪國際總部設於香港，憑藉強大的原廠資源與敏捷的響應速度，為全球企業提供高效、透明、值得信賴的電子元器件與 ITAD 解決方案。</span>
-                <span data-lang="en">Headquartered in HK, Chipwave Global offers efficient, transparent, and trusted component sourcing & ITAD solutions with agile response.</span>
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <a href="#contact" class="pulse-btn bg-blue-600 hover:bg-blue-700 px-12 py-5 rounded font-black transition text-sm tracking-widest uppercase">
-                    <span data-lang="zh">獲取即時報價</span><span data-lang="en">Quick Quote</span>
-                </a>
-                <a href="#itad" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 px-12 py-5 rounded font-black transition text-sm tracking-widest uppercase text-white">
-                    <span data-lang="zh">了解設備回收</span><span data-lang="en">Explore ITAD</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 navy-bg text-white border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
-            <div class="text-center">
-                <span class="block text-4xl font-black text-blue-500 mb-2">2021</span>
-                <span class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-bold"><span data-lang="zh">成立年份</span><span data-lang="en">Est.</span></span>
-            </div>
-            <div class="text-center border-l border-white/10">
-                <span class="block text-4xl font-black text-blue-500 mb-2">1 Hour</span>
-                <span class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-bold"><span data-lang="zh">快速報價</span><span data-lang="en">RFQ Response</span></span>
-            </div>
-            <div class="text-center border-l border-white/10">
-                <span class="block text-4xl font-black text-blue-500 mb-2">50+</span>
-                <span class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-bold"><span data-lang="zh">代理品牌</span><span data-lang="en">Partners</span></span>
-            </div>
-            <div class="text-center border-l border-white/10">
-                <span class="block text-4xl font-black text-blue-500 mb-2">100%</span>
-                <span class="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-bold"><span data-lang="zh">正品溯源</span><span data-lang="en">Original Only</span></span>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6 bg-white">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80" class="rounded shadow-2xl relative z-10">
-                <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-blue-600 -z-0"></div>
-            </div>
-            <div class="space-y-8">
-                <h2 class="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs">Our Vision</h2>
-                <h3 class="text-4xl font-black text-slate-900 leading-tight">
-                    <span data-lang="zh">在多變的市場中<br>建立確定的連接</span>
-                    <span data-lang="en">Building Certainty<br>In A Shifting Market</span>
-                </h3>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    <span data-lang="zh">芯浪國際 (CHIPWAVE GLOBAL) 於 2021 年在香港成立。我們致力於將「敏捷採購」與「循環經濟」相結合，協助全球企業解決從晶片短缺到數據中心資產處置 (ITAD) 的核心難題。</span>
-                    <span data-lang="en">Founded in 2021, Chipwave Global combines "Agile Sourcing" with "Circular Economy" to help clients solve challenges from chip shortages to Data Center ITAD.</span>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="brands" class="py-24 bg-gray-50 px-6 border-y border-gray-100">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-slate-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-12 italic">Core Global Partnerships</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 items-center">
-                <div class="brand-logo font-black text-2xl tracking-tighter text-blue-800 italic uppercase">Intel</div>
-                <div class="brand-logo font-black text-2xl tracking-tighter text-orange-600 italic uppercase">AMD</div>
-                <div class="brand-logo font-black text-2xl tracking-tighter text-green-600 italic uppercase">Nvidia</div>
-                <div class="brand-logo font-black text-2xl tracking-tighter text-blue-700 italic uppercase">Samsung</div>
-                <div class="brand-logo font-black text-2xl tracking-tighter text-red-600 italic uppercase">Micron</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="itad" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-            <div class="lg:w-1/2 order-2 lg:order-1">
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&q=80" class="h-64 w-full object-cover rounded shadow">
-                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80" class="h-64 w-full object-cover rounded shadow mt-8">
-                </div>
-            </div>
-            <div class="lg:w-1/2 order-1 lg:order-2 space-y-8">
-                <h2 class="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs">Sustainability</h2>
-                <h3 class="text-4xl font-black text-slate-900 leading-tight">
-                    <span data-lang="zh">數據中心設備<br>專業回收與循環方案</span>
-                    <span data-lang="en">Data Center ITAD &<br>Lifecycle Services</span>
-                </h3>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    <span data-lang="zh">我們提供符合 NIST 標準的數據銷毀、環保回收以及設備二次流通服務，助力全球數據中心實現綠色轉型與資產價值最大化。</span>
-                    <span data-lang="en">Providing NIST-compliant data sanitization and asset resale to help data centers maximize value and achieve green sustainability.</span>
-                </p>
-                <div class="pt-4">
-                    <a href="#contact" class="text-blue-600 font-black border-b-2 border-blue-600 pb-1 hover:text-blue-900 transition text-sm tracking-widest uppercase italic">
-                        <span data-lang="zh">聯繫諮詢 ITAD 業務</span><span data-lang="en">Consult ITAD Services</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 navy-bg text-white px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h3 class="text-5xl font-black tracking-tighter leading-none">
-                    <span data-lang="zh">與芯浪團隊聯繫</span><span data-lang="en">Contact Our Team</span>
-                </h3>
-                <div class="space-y-6">
-                    <div class="flex items-center space-x-4 border-l-2 border-blue-500 pl-6">
-                        <div>
-                            <p class="text-[10px] text-blue-500 font-black uppercase tracking-widest mb-1">HK Office</p>
-                            <p class="text-gray-400 text-sm">Room 11, 13/F, Block C, Wong King Industrial Building, 192-198 Choi Hung Road, San Po Kong, Hong Kong</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4 border-l-2 border-blue-500 pl-6">
-                        <div>
-                            <p class="text-[10px] text-blue-500 font-black uppercase tracking-widest mb-1">Inquiry Email</p>
-                            <p class="text-2xl font-bold tracking-tight">info@chipwaveglobal.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-10 rounded shadow-2xl text-slate-900">
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Name" class="border-b border-gray-200 py-3 outline-none focus:border-blue-600 transition">
-                        <select class="border-b border-gray-200 py-3 outline-none focus:border-blue-600 transition bg-transparent">
-                            <option>Procurement (採購)</option>
-                            <option>ITAD (回收)</option>
-                        </select>
-                    </div>
-                    <textarea placeholder="Your Requirements..." class="w-full border-b border-gray-200 py-3 h-32 outline-none focus:border-blue-600 transition"></textarea>
-                    <button class="w-full bg-blue-600 hover:bg-slate-900 text-white py-5 font-black uppercase tracking-widest transition shadow-xl shadow-blue-500/20">
-                        <span data-lang="zh">提交詢價單</span><span data-lang="en">Submit RFQ</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-10 bg-black text-center text-[9px] text-gray-700 tracking-[0.4em] uppercase">
-        <p>© 2026 CHIPWAVE GLOBAL LIMITED. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <script>
-        let currentLang = 'zh';
-        function toggleLang() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.style.display = el.getAttribute('data-lang') === currentLang ? 'inline' : 'none';
-            });
-            document.getElementById('langText').innerText = currentLang === 'zh' ? 'ENGLISH' : '繁體中文';
-        }
-    </script>
-</body>
-</html>
+            <p class="text-lg md:text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+                <span data-lang="zh">立足香港，服務全球。芯浪國際為您提供高效、透明、值得信賴的電子元器件採購與數據中心
